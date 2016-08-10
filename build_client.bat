@@ -5,7 +5,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 
 cd %~dp0
 
-git reset --hard
+REM git reset --hard
 python build\replace_versions.py
 if %errorlevel% neq 0 exit /b %errorlevel% 
 

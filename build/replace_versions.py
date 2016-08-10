@@ -66,7 +66,7 @@ def get_version(branch):
         else:
             print("Getting version failed. Retrying...")
     
-    data = response.readall();
+    data = response.read();
     
     response.close()
         

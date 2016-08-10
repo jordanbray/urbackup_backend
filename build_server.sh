@@ -2,8 +2,8 @@
 
 set -e
 
-git reset --hard
-python3 build/replace_versions.py
+# git reset --hard
+python build/replace_versions.py
 
 if ! test -e build_server_ok
 then

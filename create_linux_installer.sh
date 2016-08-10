@@ -2,9 +2,9 @@
 
 set -e
 
-git reset --hard
+# git reset --hard
 cd client
-git reset --hard
+# git reset --hard
 cd ..
 python3 build/replace_versions.py
 

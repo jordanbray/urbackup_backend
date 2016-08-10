@@ -3,9 +3,9 @@
 set -e
 
 #Comment for development ----
-git reset --hard
+# git reset --hard
 cd client
-git reset --hard
+# git reset --hard
 cd ..
 python3 build/replace_versions.py
 #----
