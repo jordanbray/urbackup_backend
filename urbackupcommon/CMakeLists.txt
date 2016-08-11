@@ -26,4 +26,8 @@ add_library(filelist_utils filelist_utils.cpp)
 add_library(glob glob.cpp)
 add_library(json json.cpp)
 add_library(settingslist settingslist.cpp)
+add_library(file_client fileclient/FileClient.cpp)
+add_library(file_client_chunked fileclient/FileClientChunked.cpp)
+add_library(file_tcpstack fileclient/tcpstack.cpp)
+add_library(sha2 sha2/sha2.c)
 
