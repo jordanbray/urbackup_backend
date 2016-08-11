@@ -10,4 +10,5 @@ add_library(stringtools stringtools.cpp)
 
 add_subdirectory(urbackupcommon)
 add_subdirectory(clientctl)
+add_subdirectory(cryptoplugin)
 

@@ -9,7 +9,7 @@ sed -i 's/\$(CRYPTOPP_LIBS)/\/usr\/local\/lib\/libcryptopp.a/g' Makefile.am_clie
 
 autoreconf --install
 
-./configure CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0 -DRESTORE_CLIENT -flto" CFLAGS="-flto" LDFLAGS="-flto" --enable-headless --with-crypto-prefix=/usr/local
+./configure CC=clang CXX=clang++ CXXFLAGS="-DRESTORE_CLIENT -flto" CFLAGS="-flto" LDFLAGS="-flto" --enable-headless --enable-embedded-cryptopp
 
 make -j4
 
