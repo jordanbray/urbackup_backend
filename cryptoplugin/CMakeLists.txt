@@ -186,7 +186,7 @@ add_library(cryptopp $<TARGET_OBJECTS:cryptlib> $<TARGET_OBJECTS:cpu> $<TARGET_O
     $<TARGET_OBJECTS:AESEncryption> $<TARGET_OBJECTS:tigertab> $<TARGET_OBJECTS:mqv> $<TARGET_OBJECTS:md2> $<TARGET_OBJECTS:ccm>
     $<TARGET_OBJECTS:dh> $<TARGET_OBJECTS:md4> $<TARGET_OBJECTS:whrlpool> $<TARGET_OBJECTS:asn> $<TARGET_OBJECTS:rng>
     $<TARGET_OBJECTS:cast> $<TARGET_OBJECTS:ZlibCompression> $<TARGET_OBJECTS:channels> $<TARGET_OBJECTS:pssr>
-    $<TARGET_OBJECTS:misc> $<TARGET_OBJECTS:dllmain> $<TARGET_OBJECTS:gf256> $<TARGET_OBJECTS:dh2> $<TARGET_OBJECTS:rc6>
+    $<TARGET_OBJECTS:misc> $<TARGET_OBJECTS:gf256> $<TARGET_OBJECTS:dh2> $<TARGET_OBJECTS:rc6>
     $<TARGET_OBJECTS:base64> $<TARGET_OBJECTS:filters> $<TARGET_OBJECTS:zdeflate> $<TARGET_OBJECTS:basecode>
     $<TARGET_OBJECTS:algebra> $<TARGET_OBJECTS:blumshub> $<TARGET_OBJECTS:ec2n> $<TARGET_OBJECTS:dll> $<TARGET_OBJECTS:gfpcrypt>
     $<TARGET_OBJECTS:esign> $<TARGET_OBJECTS:casts> $<TARGET_OBJECTS:rijndael> $<TARGET_OBJECTS:modes> $<TARGET_OBJECTS:sha3>
@@ -200,6 +200,9 @@ add_library(cryptopp $<TARGET_OBJECTS:cryptlib> $<TARGET_OBJECTS:cpu> $<TARGET_O
 add_executable(cryp test.cpp $<TARGET_OBJECTS:bench> $<TARGET_OBJECTS:bench2> $<TARGET_OBJECTS:validat1> $<TARGET_OBJECTS:validat2>
                              $<TARGET_OBJECTS:validat3> $<TARGET_OBJECTS:adhoc> $<TARGET_OBJECTS:datatest> $<TARGET_OBJECTS:regtest>
                              $<TARGET_OBJECTS:fipsalgt> $<TARGET_OBJECTS:dlltest>)
+
+add_library(cryptopp_main $<TARGET_OBJECTS:dllmain>)
+target_link_libraries(cryptopp_main cryptopp)
 
 target_link_libraries(cryp cryptopp)
 

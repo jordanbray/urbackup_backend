@@ -3,7 +3,7 @@
 #include "../stringtools.h"
 #include <stdlib.h>
 #ifndef _WIN32
-#include "config.h"
+#include "../config.h"
 #include "../Server.h"
 #include "../Interface/SettingsReader.h"
 #include <memory>

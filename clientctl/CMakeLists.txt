@@ -6,7 +6,7 @@ add_library(connector Connector.cpp)
 add_library(jsoncpp jsoncpp.cpp)
 add_library(tcpstack tcpstack.cpp)
 
-target_link_libraries(connector os_functions_no_server jsoncpp stringtools tcpstack escape)
+target_link_libraries(connector os_functions_no_server jsoncpp root_library tcpstack)
 
 add_executable(clientctl main.cpp)
 
