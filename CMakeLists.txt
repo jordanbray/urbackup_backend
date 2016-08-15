@@ -4,6 +4,8 @@ project(urbackup CXX)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+add_compile_options(-fPIC)
+
 SET (CMAKE_C_COMPILER             "/usr/bin/clang")
 SET (CMAKE_C_FLAGS                "-Wall -std=c99")
 SET (CMAKE_C_FLAGS_DEBUG          "-g")
@@ -25,8 +27,12 @@ SET (CMAKE_OBJDUMP "/usr/bin/llvm-objdump")
 
 
 add_definitions(-DVARDIR="/usr/var")
-add_definitions(-DSYSCONFDIR="/etc/")
-add_definitions(-DDATADIR="/usr/share/")
+add_definitions(-DSYSCONFDIR="/etc")
+add_definitions(-DDATADIR="/usr/share")
+add_definitions(-DBINDIR="/usr/bin")
+add_definitions(-D_FILE_OFFSET_BITS=64)
+add_definitions(-DPACKAGE_VERSION="3.3.3")
+
 if(WIN32)
     add_library(condition OBJECT Condition_std.cpp)
     add_library(mutex OBJECT Mutex_std.cpp)
@@ -102,4 +108,12 @@ add_subdirectory(cryptoplugin)
 add_subdirectory(urbackupclient)
 add_subdirectory(libfastcgi)
 add_subdirectory(sqlite)
+add_subdirectory(SQLGen)
+add_subdirectory(piped_process)
+add_subdirectory(fileservplugin)
+add_subdirectory(fsimageplugin)
+add_subdirectory(fuseplugin)
+add_subdirectory(httpserver)
+add_subdirectory(urlplugin)
+add_subdirectory(urbackupserver)
 

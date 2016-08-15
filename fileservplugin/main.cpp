@@ -29,8 +29,10 @@
 #include "../stringtools.h"
 #include "log.h"
 
+#ifdef CONSOLE_ON
 std::fstream logfile;
 CTCPFileServ *TCPServer=NULL;
+#endif
 
 #ifdef LINUX
 #include <sys/types.h>
@@ -291,14 +293,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		c_run=true;
 #endif
 
-#ifndef _DEBUG
-#ifndef AS_SERVICE
-#ifndef EXPORT_METHOD_INT
-	WriteReg();
-#endif
-#endif
-#endif
-
 	std::string servername;
 
 #ifdef CONSOLE_ON
@@ -365,7 +359,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	TCPServer=new CTCPFileServ;
 
 #ifndef EXPORT_METHOD_INT
-	bool suc=TCPServer->Start(55634,55635,servername);
+	bool suc=TCPServer->Start(55634,55635,servername, false);
 #else
 	bool suc=TCPServer->Start(tcpport, udpport, (pSname=="")?servername:pSname, use_fqdn);
 #endif

@@ -25,7 +25,6 @@
 #endif
 
 #ifndef _WIN32
-#include "config.h"
 #define _getcwd getcwd
 #else
 #define PACKAGE_VERSION "unknown"
@@ -34,7 +33,6 @@
 #define DATADIR ""
 #include <direct.h>
 #endif
-
 
 const std::string cmdline_version = PACKAGE_VERSION;
 

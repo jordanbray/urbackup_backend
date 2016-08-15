@@ -41,7 +41,7 @@ void CPipedProcess::operator()(void)
 	
 #ifndef _WIN32
 	IScopedLock lock(mutex);
-	output->Write(nconvert(return_code));
+	output->Write(convert(return_code));
 #endif
 	thread_stopped=true;
 	is_open=false;

@@ -26,7 +26,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <signal.h>
-
+#include <unistd.h>
 
 #define BUFSIZE 1000
 
@@ -73,12 +73,12 @@ CPipedProcess::CPipedProcess(std::string cmd)
 		else tpid+=ch;
 	}
 	pid=atoi(tpid.c_str());
-	Server->Log("Process pid: "+nconvert((int)pid), LL_DEBUG);
+	Server->Log("Process pid: "+convert((int)pid), LL_DEBUG);
 }
 
 CPipedProcess::~CPipedProcess()
 {
-	Server->Log("Killing process with pid "+nconvert((int)pid), LL_DEBUG);
+	Server->Log("Killing process with pid "+convert((int)pid), LL_DEBUG);
 	kill(pid, 15);
 	close(inputp);
 	{

@@ -33,13 +33,16 @@ add_library(file_tcpstack OBJECT fileclient/tcpstack.cpp)
 add_library(sha2 OBJECT sha2/sha2.c)
 add_library(common_adler32 OBJECT adler32.cpp)
 add_library(data OBJECT data.cpp)
+add_library(miniz OBJECT miniz.c)
     
     
-add_library(urbackup_common $<TARGET_OBJECTS:compressed_pipe> $<TARGET_OBJECTS:compressed_pipe> $<TARGET_OBJECTS:extent_iterator>
-                            $<TARGET_OBJECTS:internet_service_pipe> $<TARGET_OBJECTS:internet_service_pipe>
+add_library(urbackup_common $<TARGET_OBJECTS:compressed_pipe> $<TARGET_OBJECTS:compressed_pipe2> $<TARGET_OBJECTS:extent_iterator>
+                            $<TARGET_OBJECTS:internet_service_pipe> $<TARGET_OBJECTS:internet_service_pipe2>
                             $<TARGET_OBJECTS:sparse_file> $<TARGET_OBJECTS:tree_hash> $<TARGET_OBJECTS:bufmgr>
                             $<TARGET_OBJECTS:chunk_hasher> $<TARGET_OBJECTS:escape> $<TARGET_OBJECTS:file_metadata>
                             $<TARGET_OBJECTS:filelist_utils> $<TARGET_OBJECTS:glob> $<TARGET_OBJECTS:json>
                             $<TARGET_OBJECTS:settingslist> $<TARGET_OBJECTS:file_client> $<TARGET_OBJECTS:file_client_chunked>
                             $<TARGET_OBJECTS:file_tcpstack> $<TARGET_OBJECTS:sha2> $<TARGET_OBJECTS:common_adler32>
-                            $<TARGET_OBJECTS:data>)
+                            $<TARGET_OBJECTS:data> $<TARGET_OBJECTS:os_functions> $<TARGET_OBJECTS:miniz>)
+
+target_link_libraries(urbackup_common root_library cryptopp z)

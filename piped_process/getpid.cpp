@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 		char ch[2];
 		ch[0]=(char)fgetc(p);
 		ch[1]=0;
-		printf(ch);
+		printf("%s", ch);
 		fflush(stdout);
 	}
 	/*if( ferror(p)!=0 )

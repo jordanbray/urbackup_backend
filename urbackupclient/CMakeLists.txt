@@ -38,6 +38,8 @@ add_library(server_identity_mgr OBJECT ServerIdentityMgr.cpp)
 add_library(common_tokens OBJECT common_tokens.cpp)
 
 add_executable(urbackup_client cmdline_preprocessor.cpp)
+add_executable(urbackup_restore_client cmdline_preprocessor.cpp)
+
 add_library(urbackup_client_library $<TARGET_OBJECTS:image_thread>
                                     $<TARGET_OBJECTS:token_callback> $<TARGET_OBJECTS:client_dllmain> $<TARGET_OBJECTS:client_send>
                                     $<TARGET_OBJECTS:internet_client> $<TARGET_OBJECTS:client> $<TARGET_OBJECTS:file_permissions>
@@ -50,4 +52,6 @@ add_library(urbackup_client_library $<TARGET_OBJECTS:image_thread>
 
 target_link_libraries(urbackup_client_library cryptopp os_specific root_main urbackup_common)
 target_link_libraries(urbackup_client root_main urbackup_common cryptopp urbackup_client_library)
+target_link_libraries(urbackup_restore_client root_main urbackup_common cryptopp urbackup_client_library)
 
+set_target_properties(urbackup_restore_client PROPERTIES COMPILE_DEFINITIONS "DRESTORE_CLIENT")

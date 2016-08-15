@@ -18,7 +18,11 @@ const _i32 WINDOW_SIZE=512*1024; // 128 kbyte
 //#define LOG_CONSOLE
 //#define LOG_OFF
 #define LOG_SERVER
+
+#ifndef CONSOLE_ON
 #define DLL_EXPORT
+#endif
+
 #define CHECK_IDENT
 #define BACKGROUND_PRIORITY
 #define BACKUP_SEM
