@@ -29,10 +29,8 @@
 #include "../stringtools.h"
 #include "log.h"
 
-#ifdef CONSOLE_ON
 std::fstream logfile;
 CTCPFileServ *TCPServer=NULL;
-#endif
 
 #ifdef LINUX
 #include <sys/types.h>

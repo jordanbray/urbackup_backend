@@ -50,7 +50,7 @@ add_library(urbackup_client_library $<TARGET_OBJECTS:image_thread>
                                     $<TARGET_OBJECTS:file_metadata_download_thread> $<TARGET_OBJECTS:server_identity_mgr>
                                     $<TARGET_OBJECTS:common_tokens>)
 
-target_link_libraries(urbackup_client_library cryptopp os_specific root_main urbackup_common)
+target_link_libraries(urbackup_client_library cryptopp os_specific root_main urbackup_common fileserv)
 target_link_libraries(urbackup_client root_main urbackup_common cryptopp urbackup_client_library)
 target_link_libraries(urbackup_restore_client root_main urbackup_common cryptopp urbackup_client_library)
 
