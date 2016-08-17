@@ -17,4 +17,4 @@ add_library(piped_process piped_process.cpp $<TARGET_OBJECTS:piped_process_os> $
                           $<TARGET_OBJECTS:piped_process_getpid> $<TARGET_OBJECTS:piped_process_dllmain>
                           $<TARGET_OBJECTS:piped_process_factory>)
 
-target_link_libraries(piped_process cryptopp os_specific root_main urbackup_common)
+target_link_libraries(piped_process cryptopp root_main urbackup_common)

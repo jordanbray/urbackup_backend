@@ -23,6 +23,8 @@ SET (CMAKE_LINKER  "/usr/bin/llvm-ld")
 SET (CMAKE_NM      "/usr/bin/llvm-nm")
 SET (CMAKE_OBJDUMP "/usr/bin/llvm-objdump")
 
+add_definitions(-DSTATIC_PLUGIN)
+
 add_library(AESDecryption OBJECT AESDecryption.cpp)
 add_library(AESEncryption OBJECT AESEncryption.cpp)
 add_library(AESGCMDecryption OBJECT AESGCMDecryption.cpp)
@@ -168,7 +170,7 @@ add_library(zinflate OBJECT zinflate.cpp)
 add_library(zlib OBJECT zlib.cpp)
 add_library(adhoc OBJECT adhoc.cpp)
 
-add_library(cryptopp $<TARGET_OBJECTS:cryptlib> $<TARGET_OBJECTS:cpu> $<TARGET_OBJECTS:base32> $<TARGET_OBJECTS:files> 
+add_library(cryptopp SHARED $<TARGET_OBJECTS:cryptlib> $<TARGET_OBJECTS:cpu> $<TARGET_OBJECTS:base32> $<TARGET_OBJECTS:files> 
     $<TARGET_OBJECTS:pluginmgr> $<TARGET_OBJECTS:dessp> $<TARGET_OBJECTS:seal> $<TARGET_OBJECTS:gzip> $<TARGET_OBJECTS:fips140>
     $<TARGET_OBJECTS:AESGCMEncryption> $<TARGET_OBJECTS:sha> $<TARGET_OBJECTS:dsa> $<TARGET_OBJECTS:tiger> $<TARGET_OBJECTS:tea>
     $<TARGET_OBJECTS:polynomi> $<TARGET_OBJECTS:eprecomp> $<TARGET_OBJECTS:hrtimer> $<TARGET_OBJECTS:nbtheory>
@@ -195,14 +197,11 @@ add_library(cryptopp $<TARGET_OBJECTS:cryptlib> $<TARGET_OBJECTS:cpu> $<TARGET_O
     $<TARGET_OBJECTS:gf2_32> $<TARGET_OBJECTS:rabin> $<TARGET_OBJECTS:bfinit> $<TARGET_OBJECTS:ZlibDecompression>
     $<TARGET_OBJECTS:sosemanuk> $<TARGET_OBJECTS:xtr> $<TARGET_OBJECTS:integer> $<TARGET_OBJECTS:seed> $<TARGET_OBJECTS:sharkbox>
     $<TARGET_OBJECTS:skipjack> $<TARGET_OBJECTS:osrng> $<TARGET_OBJECTS:hmac> $<TARGET_OBJECTS:vmac> $<TARGET_OBJECTS:hex>
-    $<TARGET_OBJECTS:serpent> $<TARGET_OBJECTS:randpool> $<TARGET_OBJECTS:safer> $<TARGET_OBJECTS:AESDecryption>)
+    $<TARGET_OBJECTS:serpent> $<TARGET_OBJECTS:randpool> $<TARGET_OBJECTS:safer> $<TARGET_OBJECTS:AESDecryption> $<TARGET_OBJECTS:dllmain>)
+
+target_link_libraries(cryptopp root_main)
 
 add_executable(cryp test.cpp $<TARGET_OBJECTS:bench> $<TARGET_OBJECTS:bench2> $<TARGET_OBJECTS:validat1> $<TARGET_OBJECTS:validat2>
                              $<TARGET_OBJECTS:validat3> $<TARGET_OBJECTS:adhoc> $<TARGET_OBJECTS:datatest> $<TARGET_OBJECTS:regtest>
                              $<TARGET_OBJECTS:fipsalgt> $<TARGET_OBJECTS:dlltest>)
-
-add_library(cryptopp_main $<TARGET_OBJECTS:dllmain>)
-target_link_libraries(cryptopp_main cryptopp)
-
 target_link_libraries(cryp cryptopp)
-

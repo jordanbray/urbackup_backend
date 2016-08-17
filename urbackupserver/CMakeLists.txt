@@ -80,7 +80,7 @@ add_library(midl OBJECT lmdb/midl.c)
 
 add_definitions(-DSTATIC_PLUGIN)
 
-add_executable(urbackup_server $<TARGET_OBJECTS:backup> $<TARGET_OBJECTS:chunk_patcher> $<TARGET_OBJECTS:client_main>
+add_library(urbackup_server_lib SHARED $<TARGET_OBJECTS:backup> $<TARGET_OBJECTS:chunk_patcher> $<TARGET_OBJECTS:client_main>
                                $<TARGET_OBJECTS:continuous_backup> $<TARGET_OBJECTS:file_backup> $<TARGET_OBJECTS:file_index>
                                $<TARGET_OBJECTS:server_file_metadata_download_thread> $<TARGET_OBJECTS:full_file_backup>
                                $<TARGET_OBJECTS:image_backup> $<TARGET_OBJECTS:incr_file_backup>
@@ -89,7 +89,7 @@ add_executable(urbackup_server $<TARGET_OBJECTS:backup> $<TARGET_OBJECTS:chunk_p
                                $<TARGET_OBJECTS:wal_checkpoint_thread> $<TARGET_OBJECTS:check_files_index>
                                $<TARGET_OBJECTS:cleanup_cmd> $<TARGET_OBJECTS:export_auth_log> $<TARGET_OBJECTS:md5sum_check>
                                $<TARGET_OBJECTS:repair_cmd> $<TARGET_OBJECTS:skiphash_copy> $<TARGET_OBJECTS:server_dllmain>
-                               $<TARGET_OBJECTS:cmdline_preprocessor> $<TARGET_OBJECTS:create_files_index>
+                               $<TARGET_OBJECTS:create_files_index>
                                $<TARGET_OBJECTS:server_backup_dao> $<TARGET_OBJECTS:server_cleanup_dao>
                                $<TARGET_OBJECTS:server_files_dao> $<TARGET_OBJECTS:server_link_dao>
                                $<TARGET_OBJECTS:server_link_journal_dao> 
@@ -112,5 +112,8 @@ add_executable(urbackup_server $<TARGET_OBJECTS:backup> $<TARGET_OBJECTS:chunk_p
                                $<TARGET_OBJECTS:treenode> $<TARGET_OBJECTS:treereader> $<TARGET_OBJECTS:verify_hashes>
                                $<TARGET_OBJECTS:mdb> $<TARGET_OBJECTS:midl>)
 
-target_link_libraries(urbackup_server urbackup_common root_main httpserver)
+target_link_libraries(urbackup_server_lib urbackup_common root_main httpserver fsimageplugin fileserv)
+
+add_executable(urbackup_server $<TARGET_OBJECTS:cmdline_preprocessor>)
+target_link_libraries(urbackup_server urbackup_server_lib)
 

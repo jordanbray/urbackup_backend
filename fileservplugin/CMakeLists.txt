@@ -4,6 +4,7 @@ project(urbackup_fileserver_plugin_proj)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+add_definitions(-DSTATIC_PLUGIN)
 
 add_library(cclient_thread OBJECT CClientThread.cpp)
 add_library(ctcp_file_serv OBJECT CTCPFileServ.cpp)
@@ -40,4 +41,4 @@ add_library(fileserv SHARED $<TARGET_OBJECTS:cclient_thread> $<TARGET_OBJECTS:ct
     $<TARGET_OBJECTS:fileserver_log> $<TARGET_OBJECTS:map_buffer> $<TARGET_OBJECTS:fileserv_pluginmgr>
     $<TARGET_OBJECTS:file_serv_factory> $<TARGET_OBJECTS:fileserver_dllmain>)
 
-target_link_libraries(fileserv urbackup_common)
+target_link_libraries(fileserv root_main)

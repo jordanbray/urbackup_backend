@@ -558,6 +558,7 @@ namespace
 DLLEXPORT void LoadActions(IServer* pServer)
 {
 	Server=pServer;
+    printf("Loading actions...\n");
 
 	std::string compress_file = Server->getServerParameter("compress");
 	if(!compress_file.empty())

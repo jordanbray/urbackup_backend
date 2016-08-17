@@ -132,13 +132,14 @@ THREADPOOL_TICKET internetclient_ticket;
 DLLEXPORT void LoadActions(IServer* pServer)
 {
 	Server=pServer;
-	
+    printf("Trace 1\n");	
 	std::string rmtest=Server->getServerParameter("rmtest");
 	if(!rmtest.empty())
 	{
 		os_remove_nonempty_dir(rmtest);
 		return;
 	}
+    printf("Trace 2\n");
 
 #ifdef _WIN32
 	char t_lang[20];
@@ -188,12 +189,14 @@ DLLEXPORT void LoadActions(IServer* pServer)
 	{
 		Server->setServerParameter("max_worker_clients", "1");
 	}
+    printf("Trace 3\n");
 	if(Server->getServerParameter("restore")=="true")
 	{
 		do_restore();
 		exit(10);
 		return;
 	}
+    printf("Trace 4\n");
 	if(Server->getServerParameter("restore_wizard")=="true")
 	{
 		restore_wizard();
@@ -201,7 +204,7 @@ DLLEXPORT void LoadActions(IServer* pServer)
 		return;
 	}
 
-
+    printf("Trace 5\n");
 	{
 		str_map params;
 		image_fak=(IFSImageFactory *)Server->getPlugin(Server->getThreadID(), Server->StartPlugin("fsimageplugin", params));
@@ -240,11 +243,12 @@ DLLEXPORT void LoadActions(IServer* pServer)
 		write_file_only_admin(Server->getSessionMgr()->GenerateSessionIDWithUser("",""), pw_change_file);
 	}
 
+    printf("Trace 6\n");
 	if( !FileExists("urbackup/backup_client.db") )
 	{
 		writestring(get_backup_client_db_data(), "urbackup/backup_client.db");
 	}
-
+    printf("Trace 7\n");
 #ifndef _DEBUG
 	change_file_permissions_admin_only("urbackup/backup_client.db");
 #endif

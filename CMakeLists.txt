@@ -116,4 +116,4 @@ add_subdirectory(fuseplugin)
 add_subdirectory(httpserver)
 add_subdirectory(urlplugin)
 add_subdirectory(urbackupserver)
-
+add_subdirectory(snapshot_helper)

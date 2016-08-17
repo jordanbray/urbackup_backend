@@ -8,6 +8,8 @@ else()
     add_library(ntfs OBJECT fs/ntfs.cpp)
 endif()
 
+add_definitions(-DSTATIC_PLUGIN)
+
 add_library(client_bitmap OBJECT ClientBitmap.cpp)
 add_library(compressed_file OBJECT CompressedFile.cpp)
 add_library(fs_image_factory OBJECT FSImageFactory.cpp)
@@ -25,5 +27,5 @@ add_library(fsimageplugin SHARED $<TARGET_OBJECTS:ntfs> $<TARGET_OBJECTS:client_
                           $<TARGET_OBJECTS:cowfile> $<TARGET_OBJECTS:fs_dllmain> $<TARGET_OBJECTS:filesystem>
                           $<TARGET_OBJECTS:fs_pluginmgr> $<TARGET_OBJECTS:vhdfile> $<TARGET_OBJECTS:unknown_fs>)
 
-target_link_libraries(fsimageplugin urbackup_common root_library)
+target_link_libraries(fsimageplugin root_main urbackup_common)
 
